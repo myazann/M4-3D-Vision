@@ -29,10 +29,10 @@ def plot_img(img, do_not_use=[0]):
 
 def Inliers(F, x, xp, th):
 
-    trans_x = F@x
-    trans_xp = F.T@xp
-    
+    t_x = F@x
+    t_xp = F.T@xp
     d = np.diag(xp.T@F@x)
-    den = (trans_x[0]**2 + trans_x[1]**2 + trans_xp[0]**2 + trans_xp[1]**2)
-    final = d**2 / den
+    dn = (t_x[0]**2 + t_x[1]**2 + t_xp[0]**2 + t_xp[1]**2)
+    final = d**2/dn
+    
     return np.where(np.array(final) < th)[0]
